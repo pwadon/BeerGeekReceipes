@@ -16,13 +16,13 @@
 
     <form:hidden path="id" />
 
-    <form:input path="login" placeholder="login" value="${user.login}" cssClass="form-input" />
+    <form:input path="login" placeholder="login"  cssClass="form-input" />
     <form:errors path="login" cssClass="alet alert-danger" element="div"/>
     <c:if test="${usererror}">
         User already Exists
     </c:if>
 
-    <form:input path="email" placeholder="email" value="${user.email}" cssClass="form-input"/>
+    <form:input path="email" placeholder="email"  cssClass="form-input"/>
     <form:errors path="email" cssClass="alet alert-danger" element="div"/>
     <c:if test="${emailError}">
         This email is already in use !
@@ -35,23 +35,23 @@
         Wrong password
     </c:if>
 
-    <form:checkbox path="emailPrivate" value="${user.emailPrivate}"/>
+    <form:checkbox path="emailPrivate" />
     <form:hidden path="admin"/>
     <form:hidden path="enabled"/>
 
-    <form:input path="name" placeholder="name" value="${user.name}" cssClass="form-input" />
+    <form:input path="name" placeholder="name"  cssClass="form-input" />
     <form:errors path="name" cssClass="alet alert-danger" element="div"/>
 
-    <form:input path="surname" placeholder="surname" value="${user.surname}" cssClass="form-input" />
+    <form:input path="surname" placeholder="surname"  cssClass="form-input" />
     <form:errors path="surname" cssClass="alet alert-danger" element="div"/>
 
-    <form:textarea path="about" placeholder="about" value="${user.about}" cssClass="form-input" />
+    <form:textarea path="about" placeholder="about"  cssClass="form-input" />
     <form:errors path="about" cssClass="alet alert-danger" element="div"/>
 
-    <form:textarea path="equipment" placeholder="equipment" value="${user.equipment}" cssClass="form-input" />
+    <form:textarea path="equipment" placeholder="equipment"  cssClass="form-input" />
     <form:errors path="equipment" cssClass="alet alert-danger" element="div"/>
 
-    <form:input path="breweryName" placeholder="breweryName" value="${user.breweryName}" cssClass="form-input" />
+    <form:input path="breweryName" placeholder="breweryName"  cssClass="form-input" />
     <form:errors path="breweryName" cssClass="alet alert-danger" element="div"/>
 
 

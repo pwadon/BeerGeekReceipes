@@ -1,6 +1,6 @@
 package packages.controller;
 
-import org.hibernate.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,15 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import packages.entity.Recipe;
 import packages.entity.User;
+import packages.repository.RecipeRepository;
 import packages.repository.UserRepository;
 import packages.service.UserService;
 import packages.validator.User.FullUserValidation;
-
-import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -26,6 +27,8 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RecipeRepository recipeRepository;
 
     @Autowired
     UserService userService;
@@ -41,33 +44,29 @@ public class UserController {
     @PostMapping("/save")
     public String saveUser(@Valid User user, BindingResult errors, @RequestParam String rp, HttpServletRequest request, Model model, HttpSession session) {
 
-        if (errors.hasErrors()) {
-            return "user/form";
-        }
+        if(errors.hasErrors()) return "user/form";
 
-        if (userRepository.findByLogin(user.getLogin()) != null) {
-            model.addAttribute("usererror", true);
-            return "user/form";
-        }
+        List<String> violations = userService.registerUser(user, rp);
 
-        if (userRepository.findByEmail(user.getEmail()) != null) {
-            model.addAttribute("emailError", true);
-            return "user/form";
-        } else {
-            if (user.getPassword().equals(rp)) {
-                try {
-                    userService.registerUser(user, rp);
-                    session.setAttribute("user", user);
-                } catch (Exception e) {
-                    e.printStackTrace();
+        if(violations.size() > 0){
+            violations.forEach( err -> {
+                switch(err){
+                    case "userError":
+                        model.addAttribute("userError", true);
+                        break;
+                    case "emailError":
+                        model.addAttribute("emailError", true);
+                        break;
+                    case "pwdError":
+                        model.addAttribute("pwdError", true);
+                        break;
                 }
-
-                return "redirect:" + request.getContextPath() + "/home";
-            } else {
-                model.addAttribute("error", true);
-                return "user/form";
-            }
+            });
+            return "user/form";
         }
+
+        session.setAttribute("user", user);
+        return "redirect:" + request.getContextPath() + "/home";
 
     }
 
@@ -90,9 +89,13 @@ public class UserController {
             model.addAttribute("error", true);
             return "user/login";
         }
-
     }
 
+    @GetMapping("/logout")
+    private String logOutUser(Model model, HttpSession session, HttpServletRequest request){
+        session.removeAttribute("user");
+        return "redirect:" + request.getContextPath() +"/home";
+    }
     @GetMapping("/edit")
     private String editUser(HttpSession session, Model model) {
 
@@ -141,6 +144,20 @@ public class UserController {
         userRepository.delete(user);
         session.removeAttribute("user");
         return "redirect:" + request.getContextPath() +"/home";
+    }
+
+    @GetMapping("/profile")
+    public String profile(HttpSession session, Model model){
+        User user =(User) session.getAttribute("user");
+        if(recipeRepository.getAllByUser(user).isEmpty()){
+            model.addAttribute("noReceipes", true);
+            return "user/profile";
+        }
+        model.addAttribute("noRecipes", false);
+        List<Recipe> recipes = recipeRepository.getAllByUser(user);
+        model.addAttribute("recipes",recipes);
+        return "user/profile";
+
     }
 }
 
