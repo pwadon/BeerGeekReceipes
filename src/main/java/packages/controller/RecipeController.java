@@ -12,6 +12,7 @@ import packages.entity.User;
 import packages.repository.RecipeRepository;
 import packages.repository.StyleRepository;
 import packages.repository.UserRepository;
+import packages.service.RecipeService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,12 +32,12 @@ public class RecipeController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    RecipeService recipeService;
 
     @GetMapping("/save")
     public String addRecipe(Model model, HttpSession session){
-        User user =(User) session.getAttribute("user");
-        model.addAttribute("recipe", new Recipe());
-        model.addAttribute("user", user);
+        recipeService.addRecipeGet(model,session);
         return "recipe/form";
     }
 
@@ -45,29 +46,25 @@ public class RecipeController {
         if (errors.hasErrors()) {
             return "recipe/form";
         }
-            recipeRepository.save(recipe);
+            recipeService.addRecipePost(recipe);
             return "redirect:" +request.getContextPath()+ "/home";
     }
 
     @GetMapping("/edit/{id}")
     private String editRecipe(Model model, @PathVariable Long id){
-        Recipe recipe = recipeRepository.findOne(id);
-        model.addAttribute("recipe", recipe);
+        recipeService.editRecipe(model,id);
         return "recipe/edit";
     }
 
     @GetMapping("/delete/{id}")
-    private String deleteRecipe(Model model, @PathVariable Long id){
-        styleRepository.delete(id);
-        return "home/home";
+    private String deleteRecipe(@PathVariable Long id,HttpServletRequest request){
+        recipeService.deleteRecipe(id);
+        return "redirect:" +request.getContextPath()+ "/home";
     }
 
     @GetMapping("/{id}")
     public String showRecipe (Model model, HttpServletRequest request, @PathVariable Long id){
-        Recipe recipe =  recipeRepository.findOne(id);
-        model.addAttribute("recipe", recipe);
-        model.addAttribute("comment",new Comment());
-        model.addAttribute("user",request.getParameter("user"));
+        recipeService.showRecipe(id,model,request);
         return "recipe/recipe";
     }
     @ModelAttribute("styles")

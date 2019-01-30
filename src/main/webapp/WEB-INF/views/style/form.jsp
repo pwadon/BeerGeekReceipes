@@ -31,6 +31,9 @@
     <c:if test="${styleError}">
         Taki styl juz istnieje
     </c:if>
+    <c:if test="${styleError == false}">
+        Dodano nowy styl do zatwierdzeniam zostanie on dodany lub odrzucony po decyzji admina !
+    </c:if>
     <form:hidden path="styleProposition"/>
 
     <input type="submit"  class="btn btn-success">
@@ -52,7 +55,10 @@
         <c:if test="${styleError}">
             Taki styl juz istnieje
         </c:if>
-      Zaznacz jeżeli akceptujesz  <form:checkbox path="styleProposition"/>
+        <c:if test="${styleError == false}">
+            Dodano nowy styl.
+        </c:if>
+       <form:hidden path="styleProposition" value="true"/>
 
         <input type="submit"  class="btn btn-success">
     </form:form>

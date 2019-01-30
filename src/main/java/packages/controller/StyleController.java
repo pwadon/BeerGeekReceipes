@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import packages.entity.Style;
 import packages.entity.User;
 import packages.repository.StyleRepository;
+import packages.service.StyleService;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,11 +25,12 @@ public class StyleController {
     @Autowired
     private StyleRepository styleRepository;
 
+    @Autowired
+    private StyleService styleService;
+
     @GetMapping("/save")
     public String addStyle(Model model, HttpSession session){
-        User user =(User) session.getAttribute("user");
-        model.addAttribute("style", new Style());
-        model.addAttribute("user", user);
+    styleService.addStyleGet(model,session);
         return "style/form";
     }
 
@@ -37,26 +39,14 @@ public class StyleController {
         if (errors.hasErrors()){
             return "style/form";
         }
-        try {
-            if (style.getBeerStyle().equalsIgnoreCase(styleRepository.findByBeerStyle(style.getBeerStyle()).getBeerStyle())) {
-                model.addAttribute("styleError", true);
-                return "style/form";
-            }
-        }catch (NullPointerException n){}
+        styleService.addStylePost(style,model) ;
+    return "style/form";
 
-        try {
-            styleRepository.save(style);
-        }
-        catch (Exception e){
-            return "home/home";
-        }
-        return "home/home";
     }
 
     @GetMapping("/edit/{id}")
     private String editStyle(Model model, @PathVariable Long id){
-        Style style = styleRepository.findOne(id);
-        model.addAttribute("style", style);
+        styleService.editStyle(model,id);
         return "style/edit";
     }
 

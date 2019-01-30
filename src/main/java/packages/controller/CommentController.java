@@ -25,19 +25,25 @@ public class CommentController {
     @Autowired
     CommentRepository commentRepository;
 
+    @GetMapping("/recipe/{id}/comment")
+    public String commentRecipe(@PathVariable Long id,Model model){
+        Recipe recipe = recipeRepository.findOne(id);
+        model.addAttribute("recipe",recipe);
+        model.addAttribute("comment", new Comment());
 
+        return "recipe/recipe";
+
+    }
 
     @PostMapping("/recipe/{id}/comment")
-    public String showTweet(@Valid Comment comment, BindingResult errors, Model model, HttpServletRequest request, @PathVariable Long id){
-        Recipe recipe =  recipeRepository.findOne(id);
-        model.addAttribute("recipe", recipe);
-        model.addAttribute("comment",new Comment());
+    public String commentRecipe(@Valid Comment comment, BindingResult errors, Model model, HttpServletRequest request, @PathVariable Long id){
         if(errors.hasErrors()){
+            Recipe recipe = recipeRepository.findOne(id);
+            model.addAttribute("recipe", recipe);
             return "recipe/recipe";
         }
 
         commentRepository.save(comment);
-
         return "redirect:" + request.getContextPath() +"/recipe/"+id;
     }
 }

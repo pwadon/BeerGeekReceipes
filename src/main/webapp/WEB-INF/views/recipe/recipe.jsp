@@ -16,7 +16,7 @@
 <body>
 <a href="http://localhost:8080/home">HOME</a><br>
 
-tweet id : ${recipe.getId()}
+Recipe id : ${recipe.getId()}
 Date : ${recipe.dateTime}
 Title: ${recipe.recipeName}
 User nick : ${recipe.getUser().getLogin()}

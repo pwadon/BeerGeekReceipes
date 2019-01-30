@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import packages.entity.Recipe;
 import packages.entity.User;
 import packages.repository.RecipeRepository;
+import packages.service.HomeService;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -14,16 +15,14 @@ import java.util.List;
 @Controller
 @RequestMapping("")
 public class HomeController {
+
+
     @Autowired
-    private RecipeRepository recipeRepository;
+    HomeService homeService;
 
     @RequestMapping("/home")
-    public String home(Model model, HttpSession session){
-//        User user = (User)session.getAttribute("user");
-        List<Recipe> recipes = recipeRepository.findAll();
-        model.addAttribute("recipes", recipes);
-//        model.addAttribute("user",user);
-
+    public String home(Model model){
+      homeService.home(model);
         return "home/home";
     }
 

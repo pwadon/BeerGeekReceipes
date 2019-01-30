@@ -70,7 +70,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    private String logUser( @RequestParam String login, @RequestParam String password, HttpSession session, Model model) {
+    private String logUser( @RequestParam String login, @RequestParam String password, HttpSession session, Model model,HttpServletRequest request) {
         List<String> violations = userService.loginUser(login,password,session);
         if (violations.size()>0){
             violations.forEach(err ->{
@@ -84,7 +84,7 @@ public class UserController {
                 } });
          return "user/login";
         }
-        return "home/home";
+        return "redirect:" +request.getContextPath()+ "/home";
     }
 
     @GetMapping("/logout")
