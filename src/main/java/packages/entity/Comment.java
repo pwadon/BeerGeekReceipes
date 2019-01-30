@@ -1,9 +1,12 @@
 package packages.entity;
 
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -19,8 +22,8 @@ public class Comment {
     @ManyToOne
     private Recipe recipe;
 
-
-    private LocalDate created;
+    @CreationTimestamp
+    private LocalDateTime created;
 
     @Size(min =2, max = 200)
     private String text;
@@ -52,11 +55,11 @@ public class Comment {
         this.recipe = recipe;
     }
 
-    public LocalDate getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDate created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 

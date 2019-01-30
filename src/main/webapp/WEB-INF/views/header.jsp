@@ -5,18 +5,12 @@
         <p class="text-right">Welcome, ${user.login}</p>
         <a class="btn btn-info float-right" href="http://localhost:8080/user/logout">Log OUT</a>
         <p></p>
-        <a class="btn btn-info" href="http://localhost:8080/home/home">Home Page</a>
-        <a class="btn btn-info" href="http://localhost:8080/user/recipe/list">My Recipes</a>
-        <a class="btn btn-info" href="http://localhost:8080/user/list">Edit profile</a>
+        <a class="btn btn-info" href="http://localhost:8080/home">Home Page</a>
+        <a class="btn btn-info" href="http://localhost:8080/user/edit">Edit profile</a>
         <a class="btn btn-info" href="http://localhost:8080/recipe/save">Add new Recipe</a>
         <a class="btn btn-info" href="http://localhost:8080/user/profile">Your profile</a>
 </c:if>
 
-    <c:if test="${user == null}">
-        <a class="btn btn-info float-right" href="http://localhost:8080/user/login">Log In</a>
-        <a class="btn btn-info float-right" href="http://localhost:8080/user/save">Log In</a>
-        <p></p>
-    </c:if>
 
 </div>
-</head>
+

@@ -1,11 +1,11 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Create Recipe</title>
+    <%@include file="/WEB-INF/views/header.jsp"%>
     <style>
         input, select{
             display: block;
@@ -25,10 +25,10 @@
     <form:hidden path="id" />
     <form:hidden path="dateTime"/>
 
-    <form:input path="materials" placeholder="materials" cssClass="form-input" />
+    <form:textarea rows="15" cols="40" path="materials" placeholder="materials" cssClass="form-input" />
     <form:errors path="materials" cssClass="alet alert-danger" element="div"/>
 
-    <form:input path="process" placeholder="process" cssClass="form-input" />
+    <form:textarea rows="15" cols="40" path="process" placeholder="process" cssClass="form-input" />
     <form:errors path="process" cssClass="alet alert-danger" element="div"/>
 
     <form:input path="recipeName" placeholder="recipeName" cssClass="form-input" />
@@ -46,7 +46,4 @@
 </form:form>
 
 
-
-
-</body>
-</html>
+<%@include file="/WEB-INF/views/footer.jsp"%>

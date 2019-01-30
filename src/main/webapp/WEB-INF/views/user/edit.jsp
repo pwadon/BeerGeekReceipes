@@ -1,13 +1,21 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <html>
 <head>
-    <title>Edit User</title>
+    <title>User Profile</title>
+    <%@include file="/WEB-INF/views/header.jsp"%>
+    <style>
+        input, select{
+            display: block;
+            margin:15px 0;
+            width: 100%;
+        }
+    </style>
 </head>
-<body>
+<body class="p-3 mb-2 bg-info">
 
 <form:form method="post"
            modelAttribute="user"
@@ -35,7 +43,7 @@
         Wrong password
     </c:if>
 
-    <form:checkbox path="emailPrivate" />
+    <form:checkbox path="emailPrivate" label="Do you want your mail to be private ?" />
     <form:hidden path="admin"/>
     <form:hidden path="enabled"/>
 
@@ -58,5 +66,5 @@
     <input type="submit"  class="btn btn-success">
 </form:form>
 
-</body>
-</html>
+
+<%@include file="/WEB-INF/views/footer.jsp"%>

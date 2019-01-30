@@ -6,6 +6,7 @@
 <head>
     <title>User Profile</title>
 <%@include file="/WEB-INF/views/header.jsp"%>
+</head>
 <body class="p-3 mb-2 bg-info text-white">
 
 <table class="table table-stripped">
@@ -21,7 +22,7 @@
         <th>brewery Name</th>
         <th>equipment</th>
         <th>delete User</th>
-        <th>Update User</th>
+
 
     </tr>
     <tr>
@@ -35,8 +36,7 @@
         <td>${user.about}</td>
         <td>${user.breweryName}</td>
         <td>${user.equipment}</td>
-        <td><a class="btn btn-dark" href="http://localhost:8080/user/edit">Edit</a></td>
-        <td><a class="btn btn-dark" href="http://localhost:8080/user/delete}">Delete</a></td>
+        <td><a class="btn btn-dark" href="http://localhost:8080/user/delete">Delete</a></td>
     </tr>
 </table>
 
@@ -52,9 +52,9 @@
     <c:forEach items="${recipes}" var="recipe">
 
         <li>
-            <h4>Date : ${recipe.dateTime} Title: ${recipe.recipeName} User nick : ${recipe.getUser().getLogin()}
+            Date : ${recipe.dateTime} Title: ${recipe.recipeName} User nick : ${recipe.getUser().getLogin()}
                 <a href="http://localhost:8080/recipe/${recipe.getId()}">Show Recipe</a>
-                <br> Text : ${recipe.process} </h4>
+
         </li>
     </c:forEach>
 </ul>

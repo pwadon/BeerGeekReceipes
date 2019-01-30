@@ -1,10 +1,11 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Tweet</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <%@include file="/WEB-INF/views/header.jsp"%>>
     <style>
         input, select{
             display: block;
@@ -13,20 +14,32 @@
         }
     </style>
 </head>
-<body>
+<body class="p-3 mb-2 bg-info">
 <a href="http://localhost:8080/home">HOME</a><br>
 
 Recipe id : ${recipe.getId()}
 Date : ${recipe.dateTime}
 Title: ${recipe.recipeName}
-User nick : ${recipe.getUser().getLogin()}
+User nick : ${recipe.getUser().getLogin()}<br>
 materials : ${recipe.materials}<br>
-process : ${recipe.process}
+process : ${recipe.process}<br>
 
-
+<table class="table table-stripped">
+<tr>
+    <th>id</th>
+    <th>created</th>
+    <th>text</th>
+    <th>login</th>
+</tr>
 <c:forEach items="${recipe.getComments()}" var="comment">
-    comment : ${comment.getText()} date : ${comment.getCreated()} author : ${comment.getUser().getLogin()}<br>
+    <tr>
+    <td>${comment.id}</td>
+    <td>${comment.created}</td>
+    <td>${comment.text}</td>
+    <td>${comment.getUser().getLogin()}</td>
+    </tr>
 </c:forEach>
+</table>
 
 <c:if test="${user != null}">
 
@@ -49,5 +62,4 @@ process : ${recipe.process}
     </form:form>
 
 </c:if>
-</body>
-</html>
+<%@include file="/WEB-INF/views/footer.jsp"%>

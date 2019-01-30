@@ -1,11 +1,11 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <%@include file="/WEB-INF/views/header.jsp"%>
     <style>
         input, select{
             display: block;
@@ -17,7 +17,6 @@
 <body>
 
 <form method="post" cssClass="container col-6" >
-
 
     <input type="text" name="login" placeholder="login">
     <c:if test="${e}">
@@ -31,5 +30,4 @@
     <input type="submit"  class="btn btn-success">
 </form>
 
-</body>
-</html>
+<%@include file="/WEB-INF/views/footer.jsp"%>
