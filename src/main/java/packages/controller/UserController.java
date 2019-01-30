@@ -78,17 +78,27 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    private String logUser(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
+    private String logUser(@RequestParam String login, @RequestParam String password, HttpSession session, Model model) {
 
-        boolean log = userService.loginUser(username, password, session);
+        List<String> violations = userService.loginUser(login,password,session);
 
-        if (log) {
-            model.addAttribute("user", userRepository.findByLogin(username));
-            return "home/home";
-        } else {
-            model.addAttribute("error", true);
-            return "user/login";
+        if (violations.size()>0){
+            violations.forEach(err ->{
+                switch (err){
+                    case "errorLogin":
+                        model.addAttribute("errorLogin", true);
+                        break;
+                    case "errorPassword":
+                        model.addAttribute("errorPassword",true);
+                        break;
+                }
+            });
+         return "user/login";
         }
+        return "home/home";
+//        if(userService.loginUser(username, password, session,model)) return "home/home";
+//
+//        return "user/login";
     }
 
     @GetMapping("/logout")

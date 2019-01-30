@@ -19,9 +19,12 @@
 <form method="post" cssClass="container col-6" >
 
 
-    <input type="text" name="username" placeholder="login">
+    <input type="text" name="login" placeholder="login">
+    <c:if test="${errorLogin}">
+        Wrong password
+    </c:if>
     <input type="password" placeholder="haslo" name="password">
-    <c:if test="${error}">
+    <c:if test="${errorPassword}">
         Wrong password
     </c:if>
 

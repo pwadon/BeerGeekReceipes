@@ -19,7 +19,7 @@ public class HomeController {
 
     @RequestMapping("/home")
     public String home(Model model, HttpSession session){
-        User user = (User)session.getAttribute("user");
+//        User user = (User)session.getAttribute("user");
         List<Recipe> recipes = recipeRepository.findAll();
         model.addAttribute("recipes", recipes);
 //        model.addAttribute("user",user);
