@@ -14,12 +14,23 @@
     <a href="http://localhost:8080/user/login">login</a>
     <a href="http://localhost:8080/user/edit">edit</a>
     <a href="http://localhost:8080/user/delete">delete</a>
-    <a href="http://localhost:8080/style/save">stylesave</a>
+    <a href="http://localhost:8080/style/save">style Save</a>
+    <a href="http://localhost:8080/recipe/save">recipe Save</a>
+
 User: ${user.login}
 
 <c:if test="${not empty user}">
     WELCOME ${user.login}
 </c:if>
 
+    <ul>
+        <c:forEach items="${recipes}" var="recipe">
+            <li>
+                <h4>Date : ${recipe.dateTime} Title: ${recipe.recipeName} User nick : ${recipe.getUser().getLogin()}
+                    <a href="http://localhost:8080/recipe/${recipe.getId()}">Show Recipe</a>
+                    <br> Text : ${recipe.process} </h4>
+            </li>
+        </c:forEach>
+    </ul>
 </body>
 </html>

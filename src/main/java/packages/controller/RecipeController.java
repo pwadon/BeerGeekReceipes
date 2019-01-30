@@ -5,11 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import packages.entity.Comment;
 import packages.entity.Recipe;
 import packages.entity.Style;
 import packages.entity.User;
 import packages.repository.RecipeRepository;
 import packages.repository.StyleRepository;
+import packages.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,6 +27,9 @@ public class RecipeController {
 
     @Autowired
     RecipeRepository recipeRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
 
     @GetMapping("/save")
@@ -56,8 +61,22 @@ public class RecipeController {
         styleRepository.delete(id);
         return "home/home";
     }
+
+    @GetMapping("/{id}")
+    public String showRecipe (Model model, HttpServletRequest request, @PathVariable Long id){
+        Recipe recipe =  recipeRepository.findOne(id);
+        model.addAttribute("recipe", recipe);
+        model.addAttribute("comment",new Comment());
+        model.addAttribute("user",request.getParameter("user"));
+        return "recipe/recipe";
+    }
     @ModelAttribute("styles")
     public List<Style> styleList(){
         return styleRepository.findAll();
+    }
+
+    @ModelAttribute("users")
+    public List<User> users(){
+        return userRepository.findAll();
     }
 }

@@ -17,7 +17,6 @@
 <body>
 
 
-
 <form:form method="post"
            action=""
            modelAttribute="recipe"

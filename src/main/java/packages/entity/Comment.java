@@ -22,7 +22,7 @@ public class Comment {
 
     private LocalDate created;
 
-    @Size(min =2, max = 60)
+    @Size(min =2, max = 200)
     private String text;
 
     public Comment() {
