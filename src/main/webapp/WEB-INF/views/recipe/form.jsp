@@ -36,7 +36,7 @@
     <form:errors path="recipeName" cssClass="alet alert-danger" element="div"/>
 
     <form:select path="style">
-        <form:option value="0" disabled="true" selected="true" label="wybierz styl"/>
+
         <form:options  items="${styles}" itemValue="id" itemLabel="beerStyle"/>
 
     </form:select>

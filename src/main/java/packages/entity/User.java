@@ -45,6 +45,8 @@ public class User {
     private boolean enabled = true;
 
 
+    @OneToMany
+    private List<Comment> comments =new ArrayList<>();
 
 
     private String name;
@@ -185,5 +187,13 @@ public class User {
     @Override
     public String toString() {
         return "";
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

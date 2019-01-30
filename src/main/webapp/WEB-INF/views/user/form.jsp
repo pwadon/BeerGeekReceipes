@@ -27,7 +27,7 @@
     <form:input path="login" placeholder="login" cssClass="form-input" />
     <form:errors path="login" cssClass="alet alert-danger" element="div"/>
     <c:if test="${usererror}">
-        User already Exists
+        <div class="alet alert-danger">User already Exists</div>
     </c:if>
 
     <form:input path="email" placeholder="email" cssClass="form-input"/>
