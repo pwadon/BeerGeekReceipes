@@ -20,7 +20,7 @@
 
 
     <input type="text" name="login" placeholder="login">
-    <c:if test="${errorLogin}">
+    <c:if test="${e}">
         Wrong password
     </c:if>
     <input type="password" placeholder="haslo" name="password">

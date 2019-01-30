@@ -3,7 +3,7 @@
 <div class="p-3 mb-2 bg-dark text-white">
 <c:if test="${user != null}">
         <p class="text-right">Welcome, ${user.login}</p>
-        <a class="btn btn-info float-right" href="http://localhost:8080/user/logOut">Log OUT</a>
+        <a class="btn btn-info float-right" href="http://localhost:8080/user/logout">Log OUT</a>
         <p></p>
         <a class="btn btn-info" href="http://localhost:8080/home/home">Home Page</a>
         <a class="btn btn-info" href="http://localhost:8080/user/recipe/list">My Recipes</a>

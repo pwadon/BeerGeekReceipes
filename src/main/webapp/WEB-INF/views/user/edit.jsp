@@ -18,7 +18,7 @@
 
     <form:input path="login" placeholder="login"  cssClass="form-input" />
     <form:errors path="login" cssClass="alet alert-danger" element="div"/>
-    <c:if test="${usererror}">
+    <c:if test="${userError}">
         User already Exists
     </c:if>
 
@@ -31,7 +31,7 @@
     <form:errors path="password" cssClass="alet alert-danger" element="div"/>
 
     <input type="password" placeholder="powtorz haslo" value="${user.password}" name="rp">
-    <c:if test="${error}">
+    <c:if test="${pwdError}">
         Wrong password
     </c:if>
 

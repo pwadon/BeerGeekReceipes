@@ -6,10 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import packages.entity.Recipe;
 import packages.entity.User;
 import packages.repository.RecipeRepository;
@@ -60,115 +57,90 @@ public class UserController {
                     case "pwdError":
                         model.addAttribute("pwdError", true);
                         break;
-                }
-            });
+                } });
             return "user/form";
         }
-
         session.setAttribute("user", user);
         return "redirect:" + request.getContextPath() + "/home";
-
     }
-
     @GetMapping("/login")
-    private String logUser(Model model) {
-        model.addAttribute("user", new User());
+    private String logUser() {
         return "user/login";
 
     }
 
     @PostMapping("/login")
-    private String logUser(@RequestParam String login, @RequestParam String password, HttpSession session, Model model) {
-
+    private String logUser( @RequestParam String login, @RequestParam String password, HttpSession session, Model model) {
         List<String> violations = userService.loginUser(login,password,session);
-
         if (violations.size()>0){
             violations.forEach(err ->{
                 switch (err){
-                    case "errorLogin":
-                        model.addAttribute("errorLogin", true);
+                    case "e":
+                        model.addAttribute("e", true);
                         break;
                     case "errorPassword":
                         model.addAttribute("errorPassword",true);
                         break;
-                }
-            });
+                } });
          return "user/login";
         }
         return "home/home";
-//        if(userService.loginUser(username, password, session,model)) return "home/home";
-//
-//        return "user/login";
     }
 
     @GetMapping("/logout")
-    private String logOutUser(Model model, HttpSession session, HttpServletRequest request){
+    private String logOutUser( HttpSession session, HttpServletRequest request){
         session.removeAttribute("user");
         return "redirect:" + request.getContextPath() +"/home";
     }
     @GetMapping("/edit")
-    private String editUser(HttpSession session, Model model) {
+    private String editUser(@SessionAttribute User user, HttpSession session, Model model) {
 
-        User user =(User) session.getAttribute("user");
         model.addAttribute("user", user);
         return "user/edit";
     }
 
     @PostMapping("/edit")
-    private String editUser(@Validated ({FullUserValidation.class}) User user, BindingResult errors,@RequestParam String rp,HttpSession session, HttpServletRequest request, Model model){
-        if (errors.hasErrors()){
+    private String editUser(@Validated ({FullUserValidation.class}) User user, BindingResult errors,@RequestParam String rp,HttpSession session, HttpServletRequest request, Model model) {
+        if (errors.hasErrors()) { return "user/edit"; }
+
+        List<String> violations = userService.editUser(user,rp,user.getLogin());
+//mozna poprawic dodac metode
+        if(violations.size() > 0){
+            violations.forEach( err -> {
+                switch(err){
+                    case "userError":
+                        model.addAttribute("userError", true);
+                        break;
+                    case "emailError":
+                        model.addAttribute("emailError", true);
+                        break;
+                    case "pwdError":
+                        model.addAttribute("pwdError", true);
+                        break;
+                } });
             return "user/edit";
         }
-        try{
-            if (!userRepository.findByLogin(user.getLogin()).getId().equals(user.getId())) {
-            model.addAttribute("usererror", true);
-            return "user/edit";
-        }
-
-        }  catch (NullPointerException e) { }
-
-        try{
-
-        if (userRepository.findByEmail(user.getEmail()).getId() !=(user.getId())) {
-            model.addAttribute("emailError", true);
-            return "user/edit";
-        }
-        }catch (NullPointerException e){ }
-
-        if (user.getPassword().equals(rp)) {
-            try {
-                userService.registerUser(user, rp);
-                session.setAttribute("user", user);
-            }
-            catch (Exception e){}
-                return "redirect:" + request.getContextPath() + "/home";
-            } else {
-                model.addAttribute("error", true);
-                return "user/edit";
-            }
+        session.setAttribute("user", user);
+        return "redirect:" + request.getContextPath() + "/home";
     }
+
+
 
     @GetMapping("/delete")
     public String delUser(HttpSession session, HttpServletRequest request){
-        User user = (User)session.getAttribute("user");
-        userRepository.delete(user);
-        session.removeAttribute("user");
+        userService.delUser(session,request);
         return "redirect:" + request.getContextPath() +"/home";
     }
 
     @GetMapping("/profile")
     public String profile(HttpSession session, Model model){
-        User user =(User) session.getAttribute("user");
-        if(recipeRepository.getAllByUser(user).isEmpty()){
-            model.addAttribute("noReceipes", true);
-            return "user/profile";
-        }
-        model.addAttribute("noRecipes", false);
-        List<Recipe> recipes = recipeRepository.getAllByUser(user);
-        model.addAttribute("recipes",recipes);
-        return "user/profile";
 
+        userService.userProfile(session,model);
+            return "user/profile";
     }
+
+
 }
+
 
 

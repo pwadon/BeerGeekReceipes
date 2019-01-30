@@ -41,11 +41,11 @@
 </table>
 
 
-<c:if test="${noReceipes}">
+<c:if test="${noRecipes}">
 <div class="text"><p> You have no recipes yet</p></div>
 </c:if>
 
-<c:if test="${noReceipes ==false}">
+<c:if test="${noRecipes ==false}">
 
 <ul class="list-view">
 
