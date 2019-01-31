@@ -1,0 +1,9 @@
+INSERT INTO BeerGeekRecipes.Comment (id, created, text, recipe_id, user_id) VALUES (1, '2019-01-31 14:16:00.801000', 'dsvbvbbbdsf', 2, 2);
+INSERT INTO BeerGeekRecipes.Comment (id, created, text, recipe_id, user_id) VALUES (2, '2019-01-31 14:16:04.371000', 'bsbdbbbbccbcbv', 2, 2);
+INSERT INTO BeerGeekRecipes.Recipe (id, dateTime, materials, process, recipeName, style_id, user_id) VALUES (1, '2019-01-31 14:13:51.393000', 'zxvxvxvxzvzxvzcvxvzxzvcvxxczvvczxxxczc', 'zvzxvcvcxcvvcxcvvxzzxzvzxxxxcz', 'zxvcvzzxz', null, 2);
+INSERT INTO BeerGeekRecipes.Recipe (id, dateTime, materials, process, recipeName, style_id, user_id) VALUES (2, '2019-01-31 14:15:34.270000', 'asfsdfasfasfcxvvczvz', 'cxcvcvxvzxvcxvzzvvczvxvc', 'vxzxxvcvzz', 1, 2);
+INSERT INTO BeerGeekRecipes.Recipe (id, dateTime, materials, process, recipeName, style_id, user_id) VALUES (3, '2019-01-31 14:15:48.428000', 'xcvbcxvxcvbxcbcbxcvbxcbcczcbbcbzvzzvvzsfs', 'vxvcxvc x  xcvcxvcxvv', 'asavzvzzxxccxvvcxvcxzx', 1, 2);
+INSERT INTO BeerGeekRecipes.User (id, about, admin, breweryName, created, email, emailPrivate, enabled, equipment, login, name, password, surname) VALUES (1, null, true, null, '2019-01-31 14:13:19.697000', 'a@a', true, true, null, 'asdfasdfsaf', null, '$2a$10$nMP4fB5wL1QWD9YOX.IFk.5DPFl0NIFEFQ5cYSzr3jOl6cOLBZOo6', null);
+INSERT INTO BeerGeekRecipes.User (id, about, admin, breweryName, created, email, emailPrivate, enabled, equipment, login, name, password, surname) VALUES (2, null, true, null, '2019-01-31 14:13:31.928000', 'z@z', true, true, null, 'z', null, '$2a$10$8AZwC8Yfa0r5LxtYSt56b.znn6QApSbW3V/veWH7YEGBHVjLoG1rS', null);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (1, 'adsfsdfsadfsdfasdfsadfsadfsadfsadfdf', false);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (2, 'adsfadsfasdfasdfasdfasasdfsadf', true);

@@ -7,32 +7,33 @@
     <title>User Profile</title>
 <%@include file="/WEB-INF/views/header.jsp"%>
 </head>
-<body class="p-3 mb-2 bg-info text-white">
+<body>
 
-<table class="table table-stripped">
+<table class="table table-hover">
+    <thead>
     <tr>
-        <th>id</th>
-        <th>created</th>
-        <th>login</th>
-        <th>name</th>
-        <th>surname</th>
-        <th>email</th>
-        <th>email - private</th>
-        <th>about</th>
-        <th>brewery Name</th>
-        <th>equipment</th>
-        <th>delete User</th>
 
-
+        <th scope="col">id</th>
+        <th scope="col">created</th>
+        <th scope="col">login</th>
+        <th scope="col">name</th>
+        <th scope="col">surname</th>
+        <th scope="col">email</th>
+        <th scope="col">about</th>
+        <th scope="col">brewery Name</th>
+        <th scope="col">equipment</th>
+        <th scope="col">delete User</th>
     </tr>
+    </thead>
+
     <tr>
+        <tr class="table-default">
         <td>${user.id}</td>
         <td>${user.created}</td>
         <td>${user.login}</td>
         <td>${user.name}</td>
         <td>${user.surname}</td>
         <td>${user.email}</td>
-        <td>${user.emailPrivate}</td>
         <td>${user.about}</td>
         <td>${user.breweryName}</td>
         <td>${user.equipment}</td>

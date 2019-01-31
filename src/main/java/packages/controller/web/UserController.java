@@ -1,4 +1,4 @@
-package packages.controller;
+package packages.controller.web;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import packages.validator.User.FullUserValidation;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.validation.groups.Default;
 import java.util.List;
 
 @Controller
@@ -100,7 +101,7 @@ public class UserController {
     }
 
     @PostMapping("/edit")
-    private String editUser(@Validated ({FullUserValidation.class}) User user, BindingResult errors,@RequestParam String rp,HttpSession session, HttpServletRequest request, Model model) {
+    private String editUser(@Validated ({FullUserValidation.class, Default.class}) User user, BindingResult errors, @RequestParam String rp, HttpSession session, HttpServletRequest request, Model model) {
         if (errors.hasErrors()) { return "user/edit"; }
 
         List<String> violations = userService.editUser(user,rp,user.getLogin());

@@ -34,8 +34,8 @@ public class Recipe {
     private String process;
 
     @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER)
-
     private List<Comment> comments = new ArrayList<>();
+
     @ManyToOne
     private User user;
 

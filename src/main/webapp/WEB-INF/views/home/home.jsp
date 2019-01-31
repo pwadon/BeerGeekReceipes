@@ -5,42 +5,64 @@
 <head>
     <title>Home Page</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <div class="p-3 mb-2 bg-dark text-white">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/solar/bootstrap.min.css" rel="stylesheet" integrity="sha384-eEgFc00/DZ7ZxynbWKmCPG4M//a5puGMS+QpGal8QYF56ApHqwXSuDOZ4PbVF1L6" crossorigin="anonymous">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="http://localhost:8080/home">HOME</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
         <c:if test="${user != null}">
-            <p class="text-right">Welcome, ${user.login}</p>
-            <h3>BEER GEEKS RECIPES</h3>
-            <a class="btn btn-info float-right" href="http://localhost:8080/user/logout">Log OUT</a>
-            <p></p>
-            <a class="btn btn-info" href="http://localhost:8080/user/edit">Edit profile</a>
-            <a class="btn btn-info" href="http://localhost:8080/recipe/save">Add new Recipe</a>
-            <a class="btn btn-info" href="http://localhost:8080/user/profile">Your profile</a>
-            <c:if test="${user.admin}">
-                <a class="btn btn-info" href="http://localhost:8080/user/profile">Admin panel</a>
 
-            </c:if>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/user/edit">Edit Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/recipe/save">Add new Recipe</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/user/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/user/logout">Log Out</a>
+            </li>
+
+         </c:if>
+
+    <c:if test="${user.admin}">
+
+        <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8080/user/profile">Admin panel</a>
+        </li>
+
         </c:if>
 
         <c:if test="${user == null}">
-            <a class="btn btn-info float-left" href="http://localhost:8080/user/login">LogIn</a>
-            <a class="btn btn-info float-right" href="http://localhost:8080/user/save">Register</a>
-            <p></p>
+            <a class="btn btn-secondary my-2 my-sm-0"  href="http://localhost:8080/user/login">Log In</a>
+            <a class="btn btn-secondary my-2 my-sm-0" href="http://localhost:8080/user/save">Register</a>
+            <p></p
         </c:if>
+     </ul>
 
     </div>
+    </nav>
 </head>
 
 
 <body>
-<div class="p-1 mb-3 bg-dark text-black">
-    <ol class="chart-line-symbol text-black">
-        <c:forEach items="${recipes}" var="recipe">
-            <li class="list-group-item "> Date : ${recipe.dateTime}</li>
-            <li class="list-group-item"> Title: ${recipe.recipeName}</li>
-            <li class="list-group-item"> User nick : ${recipe.getUser().getLogin()}</li>
-            <li class="list-group-item"> <a href="http://localhost:8080/recipe/${recipe.getId()}">Show Recipe</a></li>
 
+
+        <c:forEach items="${recipes}" var="recipe" end="11">
+
+            <div class="card border-secondary mb-3" style=" float:left; width: 32rem; height: 28%; overflow: auto; margin-bottom:-60px;">
+                <div class="card-header">Recipe Name ${recipe.recipeName}</div>
+                <div class="card-body">
+                    <h4 class="card-title">From Home Brewer : ${recipe.getUser().getLogin()} added : ${recipe.dateTime} </h4>
+                    <p class="card-text">Process : ${recipe.process} </p>
+                    <p><a href="http://localhost:8080/recipe/${recipe.getId()}">Show Recipe Details and Add Comment</a></p>
+                </div>
+            </div>
         </c:forEach>
-    </ol>
-</div>
+
 <%@include file="/WEB-INF/views/footer.jsp"%>

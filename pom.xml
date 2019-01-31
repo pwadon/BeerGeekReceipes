@@ -24,6 +24,8 @@
         <mysql-connector-java.version>5.1.39</mysql-connector-java.version>
         <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
         <spring-data-jpa.version>1.11.1.RELEASE</spring-data-jpa.version>
+        <spring-test.version>5.0.9.RELEASE</spring-test.version>
+        <jackson-mapper-asl.version>1.9.13</jackson-mapper-asl.version>
     </properties>
     <dependencies>
 
@@ -93,6 +95,21 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring-test.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson-mapper-asl.version}</version>
+        </dependency>
+
+
 
 
     </dependencies>

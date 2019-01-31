@@ -1,4 +1,4 @@
-package packages.controller;
+package packages.controller.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +40,7 @@ public class StyleController {
             return "style/form";
         }
         styleService.addStylePost(style,model) ;
-    return "style/form";
+    return "redirect:/style/save";
 
     }
 
