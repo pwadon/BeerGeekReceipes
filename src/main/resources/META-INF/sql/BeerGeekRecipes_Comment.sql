@@ -1,0 +1,6 @@
+INSERT INTO BeerGeekRecipes.Comment (id, created, text, recipe_id, user_id) VALUES (1, '2019-01-31 21:18:36.409000', 'Dobre masz to piwo', 1, 4);
+INSERT INTO BeerGeekRecipes.Comment (id, created, text, recipe_id, user_id) VALUES (2, '2019-01-31 21:18:53.070000', 'Ciekawe piwo ale zmienił bym czas wysładzania ', 3, 4);
+INSERT INTO BeerGeekRecipes.Comment (id, created, text, recipe_id, user_id) VALUES (3, '2019-01-31 21:19:21.344000', 'Wole to piwo z otrębami pszennymi do śniadania ewentualnie naczczo', 2, 4);
+INSERT INTO BeerGeekRecipes.Comment (id, created, text, recipe_id, user_id) VALUES (4, '2019-01-31 21:27:36.629000', 'Czesc co sądzicie o moim piwie ?', 8, 5);
+INSERT INTO BeerGeekRecipes.Comment (id, created, text, recipe_id, user_id) VALUES (5, '2019-01-31 21:27:53.909000', 'No pięknie to uwarzyłeś', 5, 5);
+INSERT INTO BeerGeekRecipes.Comment (id, created, text, recipe_id, user_id) VALUES (6, '2019-01-31 21:28:13.140000', 'Super piwo czy mogę poprosić o 20 butelek za darmo ?', 1, 5);
