@@ -10,7 +10,7 @@ import java.util.List;
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     List<Recipe> getAllByUser(User user);
-    @Query(value ="Select * from Recipe order by dateTime", nativeQuery = true)
+    @Query(value ="Select * from Recipe order by dateTime DESC ", nativeQuery = true)
     List<Recipe> allSortedByDate();
 
 }

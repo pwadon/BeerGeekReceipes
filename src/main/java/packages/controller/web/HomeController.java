@@ -26,4 +26,9 @@ public class HomeController {
         return "home/home";
     }
 
+    @RequestMapping("/home/all")
+    public String homeAll(Model model){
+        homeService.home(model);
+        return "home/AllRecipes";
+    }
 }

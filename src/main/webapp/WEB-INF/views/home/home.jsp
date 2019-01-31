@@ -1,5 +1,6 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -26,6 +27,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="http://localhost:8080/user/logout">Log Out</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/home/all">Show All Recipes</a>
             </li>
 
          </c:if>
