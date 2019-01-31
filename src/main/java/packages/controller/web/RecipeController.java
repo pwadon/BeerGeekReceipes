@@ -59,7 +59,7 @@ public class RecipeController {
     @GetMapping("/delete/{id}")
     private String deleteRecipe(@PathVariable Long id,HttpServletRequest request){
         recipeService.deleteRecipe(id);
-        return "redirect:" +request.getContextPath()+ "/home";
+        return "redirect:" +request.getContextPath()+ "/user/profile";
     }
 
     @GetMapping("/{id}")

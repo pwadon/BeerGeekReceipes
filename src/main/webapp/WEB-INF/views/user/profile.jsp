@@ -56,6 +56,7 @@
             Date : ${recipe.dateTime} Title: ${recipe.recipeName}
                 <a href="http://localhost:8080/recipe/${recipe.getId()}">Show Recipe Details</a><br>
                 <a href="http://localhost:8080/recipe/edit/${recipe.getId()}">Edit Recipe</a>
+                <a href="http://localhost:8080/recipe/delete/${recipe.getId()}">Delete Recipe</a>
 
         </li>
     </c:forEach>
