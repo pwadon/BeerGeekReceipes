@@ -35,12 +35,12 @@ public class StyleController {
     }
 
     @PostMapping("/save")
-    public String addStyle(@Valid Style style, BindingResult errors,Model model){
+    public String addStyle(@Valid Style style, BindingResult errors,Model model, HttpServletRequest request){
         if (errors.hasErrors()){
             return "style/form";
         }
         styleService.addStylePost(style,model) ;
-    return "style/form";
+    return "redirect:" + request.getContextPath() +"/style/save";
 
     }
 

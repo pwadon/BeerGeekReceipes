@@ -10,7 +10,7 @@
 <body>
 
 <c:if test="${user.admin == false}">
-    User
+
 <form:form method="post"
            action=""
            modelAttribute="style"
@@ -35,7 +35,7 @@
 
 
 <c:if test="${user.admin}">
-    User
+
     <form:form method="post"
                action=""
                modelAttribute="style"

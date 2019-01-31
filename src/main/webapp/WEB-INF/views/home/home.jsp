@@ -41,7 +41,8 @@
         <c:if test="${user == null}">
             <a class="btn btn-secondary my-2 my-sm-0"  href="http://localhost:8080/user/login">Log In</a>
             <a class="btn btn-secondary my-2 my-sm-0" href="http://localhost:8080/user/save">Register</a>
-            <p></p
+
+
         </c:if>
      </ul>
 
