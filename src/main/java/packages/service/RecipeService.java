@@ -31,7 +31,7 @@ public class RecipeService {
         model.addAttribute("user", user);
     }
 
-    public void addRecipePost( Recipe recipe){
+    public void addRecipePost(HttpServletRequest request, Recipe recipe){
         recipeRepository.save(recipe);
     }
 

@@ -33,7 +33,7 @@
     <c:if test="${user.admin}">
 
         <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8080/user/profile">Admin panel</a>
+            <a class="nav-link" href="http://localhost:8080/user/admin">Admin panel</a>
         </li>
 
         </c:if>

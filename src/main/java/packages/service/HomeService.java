@@ -15,7 +15,7 @@ public class HomeService {
     private RecipeRepository recipeRepository;
 
     public void home(Model model){
-        List<Recipe> recipes = recipeRepository.findAll();
+        List<Recipe> recipes = recipeRepository.allSortedByDate();
         model.addAttribute("recipes", recipes);
     }
 }

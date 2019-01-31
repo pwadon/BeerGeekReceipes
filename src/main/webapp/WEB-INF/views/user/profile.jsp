@@ -53,8 +53,9 @@
     <c:forEach items="${recipes}" var="recipe">
 
         <li>
-            Date : ${recipe.dateTime} Title: ${recipe.recipeName} User nick : ${recipe.getUser().getLogin()}
-                <a href="http://localhost:8080/recipe/${recipe.getId()}">Show Recipe</a>
+            Date : ${recipe.dateTime} Title: ${recipe.recipeName}
+                <a href="http://localhost:8080/recipe/${recipe.getId()}">Show Recipe Details</a><br>
+                <a href="http://localhost:8080/recipe/edit/${recipe.getId()}">Edit Recipe</a>
 
         </li>
     </c:forEach>

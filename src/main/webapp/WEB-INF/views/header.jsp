@@ -21,12 +21,17 @@
                                         <a class="nav-link" href="http://localhost:8080/user/logout">Log Out</a>
                                 </li>
 
+                                <c:if test="${!user.admin}">
+                                        <li class="nav-item">
+                                                <a class="nav-link" href="http://localhost:8080/style/save">Propose Beer Style !</a>
+                                        </li>
+                                </c:if>
                         </c:if>
 
                         <c:if test="${user.admin}">
 
                                 <li class="nav-item">
-                                        <a class="nav-link" href="http://localhost:8080/user/profile">Admin panel</a>
+                                        <a class="nav-link" href="http://localhost:8080/user/admin">Admin panel</a>
                                 </li>
 
                         </c:if>

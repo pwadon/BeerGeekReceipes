@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import packages.entity.Recipe;
 import packages.entity.User;
 import packages.repository.RecipeRepository;
+import packages.repository.StyleRepository;
 import packages.repository.UserRepository;
 import packages.service.UserService;
 import packages.validator.User.FullUserValidation;
@@ -27,6 +28,9 @@ public class UserController {
     private UserRepository userRepository;
     @Autowired
     private RecipeRepository recipeRepository;
+
+    @Autowired
+    private StyleRepository styleRepository;
 
     @Autowired
     UserService userService;
@@ -140,6 +144,13 @@ public class UserController {
             return "user/profile";
     }
 
+    @GetMapping("/admin")
+    public String profileAdmin(HttpSession session, Model model){
+
+        userService.userProfile(session,model);
+        model.addAttribute("styles", styleRepository.findAll());
+        return "user/admin";
+    }
 
 }
 

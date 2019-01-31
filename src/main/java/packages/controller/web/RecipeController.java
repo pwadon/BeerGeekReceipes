@@ -46,7 +46,7 @@ public class RecipeController {
         if (errors.hasErrors()) {
             return "recipe/form";
         }
-            recipeService.addRecipePost(recipe);
+            recipeService.addRecipePost(request,recipe);
             return "redirect:" +request.getContextPath()+ "/home";
     }
 

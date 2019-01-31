@@ -24,7 +24,7 @@ public class StyleService {
     public void addStylePost(Style style, Model model){
 
         Style style1 =styleRepository.findByBeerStyle(style.getBeerStyle());
-        if (style1 == null){
+        if (style1 == null || style1.getId().equals(style.getId())){
             styleRepository.save(style);
             model.addAttribute("styleError",false);
         }

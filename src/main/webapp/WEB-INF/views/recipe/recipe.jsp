@@ -4,18 +4,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Tweet</title>
-    <%@include file="/WEB-INF/views/header.jsp"%>>
-    <style>
-        input, select{
-            display: block;
-            margin:15px 0;
-            width: 100%;
-        }
-    </style>
+    <title>User Profile</title>
+    <%@include file="/WEB-INF/views/header.jsp"%>
 </head>
-<body class="p-3 mb-2 bg-info">
-<a href="http://localhost:8080/home">HOME</a><br>
+<body>
+
 
 Recipe id : ${recipe.getId()}
 Date : ${recipe.dateTime}
@@ -49,7 +42,7 @@ process : ${recipe.process}<br>
                cssClass="container col-6" >
         <form:hidden path="id"/>
 
-        <form:input path="text" placeholder="text" cssClass="form-input"/>
+        <form:textarea path="text" rows="5" cols="30" placeholder="Add a Message" cssClass="form-input"/>
         <form:errors path="text" cssClass="alert alert-danger" element="div"/>
 
         <form:hidden path="created"/>

@@ -40,7 +40,7 @@ public class StyleController {
             return "style/form";
         }
         styleService.addStylePost(style,model) ;
-    return "redirect:/style/save";
+    return "style/form";
 
     }
 
@@ -48,6 +48,15 @@ public class StyleController {
     private String editStyle(Model model, @PathVariable Long id){
         styleService.editStyle(model,id);
         return "style/edit";
+    }
+    @PostMapping("/edit")
+    public String editStyle(@Valid Style style, BindingResult errors,Model model){
+        if (errors.hasErrors()){
+            return "style/edit";
+        }
+        styleService.addStylePost(style,model) ;
+        return "style/edit";
+
     }
 
     @GetMapping("/delete/{id}")
