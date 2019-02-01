@@ -13,4 +13,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     @Query(value ="Select * from Recipe order by dateTime DESC ", nativeQuery = true)
     List<Recipe> allSortedByDate();
 
+    List <Recipe> getAllByUserId(Long id);
+
 }

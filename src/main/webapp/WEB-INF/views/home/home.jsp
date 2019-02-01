@@ -32,6 +32,10 @@
                 <a class="nav-link" href="http://localhost:8080/home/all">Show All Recipes</a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/home/allUsers">Show All Users</a>
+            </li>
+
          </c:if>
 
     <c:if test="${user.admin}">
