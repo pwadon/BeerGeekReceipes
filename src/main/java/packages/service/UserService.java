@@ -75,8 +75,8 @@ public class UserService {
         return errors;
     }
 
-    public List<String> editUser(User user, String password, String login) {
-// mozna lepiej napisac ?
+    public List<String> editUser(User user, String login) {
+
         List<String> errors = new ArrayList<>();
         User userByLogin = userRepository.findByLogin(login);
         User userByEmail = userRepository.findByEmail(user.getEmail());
@@ -94,18 +94,22 @@ public class UserService {
         } catch (NullPointerException n) {
         }
 
-        if (!user.getPassword().equals(password)) {
-            errors.add("pwdError");
-        }
+//        if (!user.getPassword().equals(password)) {
+//            errors.add("pwdError");
+//        }
         if (errors.size() == 0) {
 
             //create admin if this is first user
             if (user.isAdmin()) {
                 user.setAdmin(true);
             }
-            user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+//        if (user.getPassword().length() > 0)
+//            user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+//        }else {
+//            user.setPassword(userByLogin.getPassword());
             userRepository.save(user);
         }
+
 
         return errors;
     }
@@ -131,5 +135,20 @@ public class UserService {
             List<Recipe> recipes = recipeRepository.getAllByUser(user);
             model.addAttribute("recipes", recipes);
         }
+    }
+    public void checkErrors(List<String> violations, Model model){
+        violations.forEach( err -> {
+            switch(err){
+                case "userError":
+                    model.addAttribute("userError", true);
+                    break;
+                case "emailError":
+                    model.addAttribute("emailError", true);
+                    break;
+                case "pwdError":
+                    model.addAttribute("pwdError", true);
+                    break;
+            } });
+
     }
 }

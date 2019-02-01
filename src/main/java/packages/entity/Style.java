@@ -48,7 +48,7 @@ public class Style {
 
     @Override
     public String toString() {
-        return "";
+        return id+" "+beerStyle;
     }
 
 }

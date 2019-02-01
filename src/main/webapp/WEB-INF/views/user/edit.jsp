@@ -81,13 +81,10 @@
     <c:if test="${emailError}">
         This email is already in use !
     </c:if>
-    <form:password path="password" placeholder="password" value="${user.password}" cssClass="form-input"/>
-    <form:errors path="password" cssClass="alet alert-danger" element="div"/>
+    <form:hidden path="password" placeholder="password" value="${user.password}" cssClass="form-input"/>
 
-    <input type="password" placeholder="powtorz haslo" value="${user.password}" name="rp">
-    <c:if test="${pwdError}">
-        Wrong password
-    </c:if>
+
+
 
     <form:hidden path="admin"/>
     <form:hidden path="enabled"/>

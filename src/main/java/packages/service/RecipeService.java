@@ -31,9 +31,7 @@ public class RecipeService {
         model.addAttribute("user", user);
     }
 
-    public void addRecipePost(HttpServletRequest request, Recipe recipe){
-        recipeRepository.save(recipe);
-    }
+
 
     public void editRecipe(Model model, Long id){
         Recipe recipe = recipeRepository.findOne(id);

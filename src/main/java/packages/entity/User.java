@@ -184,7 +184,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "";
+        return id +""+ getLogin();
     }
 
     public List<Comment> getComments() {

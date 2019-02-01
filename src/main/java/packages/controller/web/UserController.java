@@ -51,18 +51,7 @@ public class UserController {
         List<String> violations = userService.registerUser(user, rp);
 
         if(violations.size() > 0){
-            violations.forEach( err -> {
-                switch(err){
-                    case "userError":
-                        model.addAttribute("userError", true);
-                        break;
-                    case "emailError":
-                        model.addAttribute("emailError", true);
-                        break;
-                    case "pwdError":
-                        model.addAttribute("pwdError", true);
-                        break;
-                } });
+            userService.checkErrors(violations,model);
             return "user/form";
         }
         session.setAttribute("user", user);
@@ -98,31 +87,19 @@ public class UserController {
         return "redirect:" + request.getContextPath() +"/home";
     }
     @GetMapping("/edit")
-    private String editUser(@SessionAttribute User user, HttpSession session, Model model) {
+    private String editUser(@SessionAttribute User user, Model model) {
 
         model.addAttribute("user", user);
         return "user/edit";
     }
 
     @PostMapping("/edit")
-    private String editUser(@Validated ({FullUserValidation.class, Default.class}) User user, BindingResult errors, @RequestParam String rp, HttpSession session, HttpServletRequest request, Model model) {
+    private String editUser(@Validated ({FullUserValidation.class, Default.class}) User user, BindingResult errors,  HttpSession session, HttpServletRequest request, Model model) {
         if (errors.hasErrors()) { return "user/edit"; }
 
-        List<String> violations = userService.editUser(user,rp,user.getLogin());
-//mozna poprawic dodac metode
+        List<String> violations = userService.editUser(user,user.getLogin());
         if(violations.size() > 0){
-            violations.forEach( err -> {
-                switch(err){
-                    case "userError":
-                        model.addAttribute("userError", true);
-                        break;
-                    case "emailError":
-                        model.addAttribute("emailError", true);
-                        break;
-                    case "pwdError":
-                        model.addAttribute("pwdError", true);
-                        break;
-                } });
+        userService.checkErrors(violations,model);
             return "user/edit";
         }
         session.setAttribute("user", user);
