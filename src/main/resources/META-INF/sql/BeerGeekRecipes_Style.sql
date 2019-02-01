@@ -1,0 +1,18 @@
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (1, 'Indian Pale Ale', true);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (2, 'Pale Ale', true);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (3, 'Ale', true);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (4, 'Baltic Porter', true);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (5, 'Bock', true);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (6, 'Dubel', true);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (7, 'Double Milk Indian Pale Ale', true);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (8, 'Imperial Oyster Stout', true);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (9, 'Milk Stout', true);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (10, 'Pils', true);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (11, 'Porter', true);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (12, 'Rauch Bock', true);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (13, 'Russian imperial Stout', true);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (14, 'American Stout', true);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (15, 'Belgian Dubbel', false);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (16, 'German Pilsner', false);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (17, 'Hefe-Weizen', false);
+INSERT INTO BeerGeekRecipes.Style (id, beerStyle, styleProposition) VALUES (18, 'Lager', false);

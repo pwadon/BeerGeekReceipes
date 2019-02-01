@@ -8,6 +8,7 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import packages.converter.CommentConverter;
 import packages.converter.RecipeConverter;
 import packages.converter.StyleConverter;
 import packages.converter.UserConverter;
@@ -25,6 +26,7 @@ public class FormatterConfig implements WebMvcConfigurer {
         registry.addConverter(getUserConverter());
         registry.addConverter(getRecipeConverter());
         registry.addConverter(getStyleConverter());
+        registry.addConverter(getCommentConverter());
     }
 
     @Bean
@@ -41,6 +43,9 @@ public class FormatterConfig implements WebMvcConfigurer {
     public StyleConverter getStyleConverter(){
         return new StyleConverter();
     }
+
+    @Bean
+    public CommentConverter getCommentConverter(){return new CommentConverter();}
 
 
 

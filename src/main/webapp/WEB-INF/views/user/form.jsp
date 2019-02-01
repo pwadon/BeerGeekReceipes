@@ -5,7 +5,8 @@
 <html>
 <head>
     <title>Title</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/solar/bootstrap.min.css" rel="stylesheet" integrity="sha384-eEgFc00/DZ7ZxynbWKmCPG4M//a5puGMS+QpGal8QYF56ApHqwXSuDOZ4PbVF1L6" crossorigin="anonymous">
+
     <style>
         input, select{
             display: block;
@@ -26,8 +27,8 @@
 
     <form:input path="login" placeholder="login" cssClass="form-input" />
     <form:errors path="login" cssClass="alet alert-danger" element="div"/>
-    <c:if test="${usererror}">
-        User already Exists
+    <c:if test="${userError}">
+        <div class="alet alert-danger">User already Exists</div>
     </c:if>
 
     <form:input path="email" placeholder="email" cssClass="form-input"/>
@@ -39,7 +40,7 @@
     <form:errors path="password" cssClass="alet alert-danger" element="div"/>
 
     <input type="password" placeholder="powtorz haslo" name="rp">
-    <c:if test="${error}">
+    <c:if test="${pwdError}">
         Wrong password
     </c:if>
 

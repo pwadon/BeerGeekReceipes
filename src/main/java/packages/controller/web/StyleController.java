@@ -1,4 +1,4 @@
-package packages.controller;
+package packages.controller.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import packages.entity.Style;
 import packages.entity.User;
 import packages.repository.StyleRepository;
+import packages.service.StyleService;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,46 +25,45 @@ public class StyleController {
     @Autowired
     private StyleRepository styleRepository;
 
+    @Autowired
+    private StyleService styleService;
+
     @GetMapping("/save")
     public String addStyle(Model model, HttpSession session){
-        User user =(User) session.getAttribute("user");
-        model.addAttribute("style", new Style());
-        model.addAttribute("user", user);
+    styleService.addStyleGet(model,session);
         return "style/form";
     }
 
     @PostMapping("/save")
-    public String addStyle(@Valid Style style, BindingResult errors,Model model){
+    public String addStyle(@Valid Style style, BindingResult errors,Model model, HttpServletRequest request){
         if (errors.hasErrors()){
             return "style/form";
         }
-        try {
-            if (style.getBeerStyle().equalsIgnoreCase(styleRepository.findByBeerStyle(style.getBeerStyle()).getBeerStyle())) {
-                model.addAttribute("styleError", true);
-                return "style/form";
-            }
-        }catch (NullPointerException n){}
+        styleService.addStylePost(style,model) ;
+    return "redirect:" + request.getContextPath() +"/style/save";
 
-        try {
-            styleRepository.save(style);
-        }
-        catch (Exception e){
-            return "home/home";
-        }
-        return "home/home";
     }
 
     @GetMapping("/edit/{id}")
     private String editStyle(Model model, @PathVariable Long id){
-        Style style = styleRepository.findOne(id);
-        model.addAttribute("style", style);
+        styleService.editStyle(model,id);
         return "style/edit";
+    }
+    @PostMapping("/edit")
+    public String editStyle(@Valid Style style, BindingResult errors,Model model){
+        if (errors.hasErrors()){
+            return "style/edit";
+        }
+        styleService.addStylePost(style,model) ;
+        return "style/edit";
+
     }
 
     @GetMapping("/delete/{id}")
-    private String deleteStyle(Model model, @PathVariable Long id){
+    private String deleteStyle(@PathVariable Long id, Model model){
         styleRepository.delete(id);
-        return "home/home";
+        model.addAttribute("styles", styleRepository.findAll());
+        return "user/admin";
     }
 
 

@@ -8,6 +8,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByLogin(String string);
     User findByEmail(String email);
+    User findByPassword(String password);
     List<User> findAllByEmail(String email);
     List<User> findAllByLogin(String login);
 }

@@ -6,9 +6,10 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Recipe {
@@ -21,19 +22,19 @@ public class Recipe {
     private LocalDateTime dateTime;
 
     @NotEmpty
-//    @Min(value = 2)
-//    @Max(value = 100)
+    @Size(min = 2, max = 100)
     private String recipeName;
+
     @NotEmpty
-//    @Max(value = 1000)
-//    @Min(value = 10)
+    @Size(min = 2, max = 1000)
     private String materials;
 
     @NotEmpty
-//    @Min(value = 10)
-//    @Max( value = 2000)
+    @Size(min=20, max = 2000)
     private String process;
 
+    @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER)
+    private List<Comment> comments = new ArrayList<>();
 
     @ManyToOne
     private User user;
@@ -99,8 +100,16 @@ public class Recipe {
         this.style = style;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String toString() {
-        return "Recipe{}";
+        return "Recipe";
     }
 }

@@ -1,16 +1,13 @@
 package packages.entity;
 
-import org.hibernate.annotations.CreationTimestamp;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 import packages.validator.User.FullUserValidation;
 
 import javax.persistence.*;
-import javax.print.DocFlavor;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.validation.groups.Default;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +30,7 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    
     @NotEmpty
     private String password;
 
@@ -44,7 +42,9 @@ public class User {
 
     private boolean enabled = true;
 
-
+    @JsonIgnore
+    @OneToMany
+    private List<Comment> comments =new ArrayList<>();
 
 
     private String name;
@@ -57,7 +57,7 @@ public class User {
     private String about;
 
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Recipe> recipes = new ArrayList<>();
 
@@ -184,6 +184,14 @@ public class User {
 
     @Override
     public String toString() {
-        return "";
+        return id +""+ getLogin();
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
