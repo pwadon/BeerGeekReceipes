@@ -26,9 +26,14 @@
         Zedytowano styl
     </c:if>
 
-
+    <c:if test="${style.styleProposition}">
     <form:hidden path="styleProposition" value ="true"/>
+    </c:if>
 
+    <c:if test="${!style.styleProposition}">
+    <form:hidden path="styleProposition" value ="true"/>
+        <a class="" href="http://localhost:8080/style/delete/${style.getId()}">Delete Style</a>
+    </c:if>
 
     <input type="submit"  class="btn btn-success">
 </form:form>

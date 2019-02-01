@@ -60,9 +60,10 @@ public class StyleController {
     }
 
     @GetMapping("/delete/{id}")
-    private String deleteStyle(Model model, @PathVariable Long id){
+    private String deleteStyle(@PathVariable Long id, Model model){
         styleRepository.delete(id);
-        return "home/home";
+        model.addAttribute("styles", styleRepository.findAll());
+        return "user/admin";
     }
 
 
